@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mama Morins' Grocery</title>
+</head>
+<body>
+    <h1>Jebets' Grocery </h1>
+  
+    <div class="allproducts">
+        {% for product in products %}
+            <div class="product-container">
+                <img src="{{product.image.url}}" class="img"/>
+                <h1 class="product-name">{{ product.name }}</h1>
+                
+                 <a href="{% url 'product_detail_view' id=product.id %}">view details</a><br>
+                 <a href="{% url 'product_update' id=product.id %}">edit details</a>
+                
+           
+
+              
+            </div>
+        {% endfor %}
+    </div>
+
+    <style>
+        
+        .allproducts{
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+           
+            
+            border: 1px solid black;
+}
+
+        
+    </style>
+    
+</body>
+</html>
