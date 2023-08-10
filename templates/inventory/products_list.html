@@ -15,7 +15,9 @@
                 <h1 class="product-name">{{ product.name }}</h1>
                 
                  <a href="{% url 'product_detail_view' id=product.id %}">view details</a><br>
-                 <a href="{% url 'product_update' id=product.id %}">edit details</a>
+                 <a href="{% url 'product_update' id=product.id %}">edit details</a><br>
+                 <a href="{% url 'product_delete' id=product.id %}">Delete</a>
+
                 
            
 

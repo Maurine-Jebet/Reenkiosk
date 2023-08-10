@@ -1,5 +1,7 @@
 from django.shortcuts import render,redirect
 from inventory.models import Product
+from django.shortcuts import redirect, get_object_or_404
+
 
 
 # Create your views here.
@@ -39,11 +41,21 @@ def product_update_view(request,id):
         form = ProductUploadForm(instance=product)
         return render(request,"inventory/edit_products.html",{"form":form})
 
-def delete_product(request,id):
-    product = Product.objects.get(id = id)    
-    product.delete()
+def product_delete(request, id):
+    product = get_object_or_404(Product, id=id)
 
-    return redirect("product_list_view") 
+    if request.method == 'POST':
+        product.delete()
+        return redirect("products_list_view")
+
+    # If the request method is not POST, render a confirmation page.
+    return render(request, 'inventory/confirmation_page.html', {'product': product})
+
+# def delete_product(request,id):
+#     product = Product.objects.get(id = id)    
+#     product.delete()
+
+#     return redirect("product_list_view") 
     
      
 
